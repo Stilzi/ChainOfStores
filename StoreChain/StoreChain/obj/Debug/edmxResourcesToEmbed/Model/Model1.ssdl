@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ChainOfStoresModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Consignment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProviderID" Type="int" />
+    <Property Name="StoreID" Type="int" />
+    <Property Name="Volume" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STORE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Profile" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Capital" Type="int" Nullable="false" />
+    <Property Name="NumberOfRegistration" Type="int" Nullable="false" />
+    <Property Name="DateOfRegistration" Type="date" Nullable="false" />
+    <Property Name="Contribution" Type="int" Nullable="false" />
+    <Property Name="OwnerID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Consignment_ProviderID_Provider_ID">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+    <End Role="Consignment" Type="Self.Consignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Consignment">
+        <PropertyRef Name="ProviderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Consignment_StoreID_Store_ID">
+    <End Role="STORE" Type="Self.STORE" Multiplicity="0..1" />
+    <End Role="Consignment" Type="Self.Consignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Consignment">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STORE_OwnerID_Owner_ID">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="0..1" />
+    <End Role="STORE" Type="Self.STORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STORE">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ChainOfStoresModelContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Consignment" EntityType="Self.Consignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE" EntityType="Self.STORE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Consignment_ProviderID_Provider_ID" Association="Self.FK_Consignment_ProviderID_Provider_ID">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Consignment" EntitySet="Consignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Consignment_StoreID_Store_ID" Association="Self.FK_Consignment_StoreID_Store_ID">
+      <End Role="STORE" EntitySet="STORE" />
+      <End Role="Consignment" EntitySet="Consignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STORE_OwnerID_Owner_ID" Association="Self.FK_STORE_OwnerID_Owner_ID">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="STORE" EntitySet="STORE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

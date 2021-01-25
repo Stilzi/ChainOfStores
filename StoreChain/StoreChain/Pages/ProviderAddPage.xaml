@@ -1,0 +1,55 @@
+﻿<Page x:Class="StoreChain.Pages.ProviderAddPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StoreChain.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="ProviderAddPage">
+    
+    <Grid Background="Honeydew">
+        <StackPanel     HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="280">
+            <TextBlock  Text="ФИО"
+                        FontSize="20"
+                        Height="30"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"/>
+            <TextBox    x:Name="NameTxb"
+                        Height="40"
+                        Width="300"/>
+            <TextBlock  Text="Адрес"
+                        Height="30"
+                        FontSize="20"
+                        Margin="0 20 0 0"
+                        HorizontalAlignment="Center"/>
+            <TextBox    x:Name="AddressTxb"
+                        Height="40"
+                        Width="300"/>
+            <TextBlock  Text="Телефон"
+                        Height="30"
+                        FontSize="20"
+                        Margin="0 20 0 0"
+                        HorizontalAlignment="Center"/>
+            <TextBox    x:Name="PhoneTxb"
+                        Height="40"
+                        Width="300"/>
+        </StackPanel>
+        <Button     x:Name="insertbtn"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 0 40"
+                        Height="30"
+                        Width="200"
+                        Content="Добавить" Click="insertbtn_Click"/>
+        <Button     x:Name="goback"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="30"
+                        Height="30"
+                        Width="100"
+                        Content="Назад" Click="goback_Click"/>
+    </Grid>
+</Page>
